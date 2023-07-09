@@ -1,0 +1,7 @@
+.carrito{
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    align-items: center;
+    background-color: white;
+}
