@@ -9,7 +9,6 @@ const ItemListContainer = () => {
   const [products, setProducts] = useState([]); //Importante iniciar en array para que no falle el metodo map
   const [isLoading, setIsLoading] = useState(true);
   const { category } = useParams()
-  //Poner en efectos peticiones o cosas asincronas
 
   useEffect(() => {
     if(!category) {
@@ -28,17 +27,6 @@ const ItemListContainer = () => {
       .finally(() => setIsLoading(false))
     }
   }, [category])
-
-  // useEffect(() => {
-
-  //  getGym() //Se simula una peticion
-  //   .then(res => {
-  //     setIsLoading(false); //Cuando esta se resuelve cambia al estado para dejar de cargar
-  //     setProducts(res)} //Ademas setea productos con lo que resolvio la promesa (no hay catch porque estamos segurods de que siempre hay algo)
-      
-  //     ) 
-
-  // }, []);
 
   console.log(category);
   const handleProductFiltered = ({filterState, handleFilterChange}) => (
