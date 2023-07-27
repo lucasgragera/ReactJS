@@ -1,25 +1,58 @@
+import { Link, NavLink } from "react-router-dom"
 import React from 'react';
-import CartWidget from './CartWidget/CartWidget';
+import { CartWidget } from '../CartWidget/CartWidget';
 import './NavBar.css';
 
-export const NavBar = () => {
+
+const NavBar = () => {
     return(
-        <div> 
+
+        <div>
+            <Link to='/' className='alert alert-success' >
+                TODO
+            </Link>
             <h1 className='titulo'>Venta de Elementos de Gimnasio</h1>
-            <ul className='listado'>
-                <li className='lista'>
-                    <a href="">Mancuernas</a>
-                </li>
-                <li className='lista'>
-                    <a href="">Maquinas</a>
-                </li>
-                <li className='lista'>
-                    <a href="">Discos</a>
-                </li>
-            </ul>
-            <CartWidget />
+            <nav className='listado'>
+                <NavLink to={'/category/todo'}>Todo</NavLink>
+                <NavLink to={'/category/mancuernas'}>Mancuernas</NavLink>
+                <NavLink to={'/category/maquinas'}>Maquinas</NavLink>
+            </nav>
+
+            <Link to='/cart'>
+                <CartWidget />
+            </Link>
         </div>
-    )
-}
+)}
 
 export default NavBar;
+
+
+    //         return (
+    //     <Navbar >
+    //         <Container>
+    //             <Link to='/' >
+    //                 TODO
+    //             </Link>
+    //             <Navbar.Toggle  />
+    //             <Navbar.Collapse >
+    //             <Nav >
+    //                 <NavLink to="/categoria/ancuerna" className={ ({isActive})=> isActive ? 'btn btn-primary' : 'btn btn-outline-primary'} >Gorras</NavLink>
+    //                 <NavLink to='/categoria/maquina' className={ ({isActive})=> isActive ? 'btn btn-primary' : 'btn btn-outline-primary'}>Remeras</NavLink>                   
+    //             </Nav>
+    //             <Nav>                    
+    //                 <Link className="" to='/cart' >
+    //                     <CartWidget />
+    //                 </Link>
+                    
+    //             </Nav>
+    //             </Navbar.Collapse>
+    //         </Container>
+    //     </Navbar>
+    // )
+
+
+
+//         </div>
+//     )
+// }
+// export default NavBar;

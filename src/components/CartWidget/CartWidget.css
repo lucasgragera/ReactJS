@@ -1,0 +1,12 @@
+.cart-widget{
+    position: relative;
+    transform: translateY(8px);
+}
+.cart-widget svg{
+    font-size: 30px;
+}
+.carrito{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
