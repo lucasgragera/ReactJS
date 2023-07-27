@@ -56,12 +56,16 @@ let productos = [
 ];
 
 export const getGym = (id) => {
-  return new Promise((res,rej) => {
-    setTimeout(() => {
-      res(!id ? productos : productos.find(producto => producto.id === id))
-    }, 1000)
-  }) 
-}
+  return new Promise((res, rej) => {
+      setTimeout(() => {
+          res(
+              !id
+                  ? productos
+                  : productos.find((producto) => producto.id === parseInt(id))
+          );
+      }, 1000);
+  });
+};
 
 // export const getGym = () => {
 //     return new Promise((res)=>{

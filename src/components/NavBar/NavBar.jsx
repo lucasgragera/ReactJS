@@ -13,9 +13,9 @@ const NavBar = () => {
             </Link>
             <h1 className='titulo'>Venta de Elementos de Gimnasio</h1>
             <nav className='listado'>
-                <NavLink to={'/category/todo'}>Todo</NavLink>
-                <NavLink to={'/category/mancuernas'}>Mancuernas</NavLink>
-                <NavLink to={'/category/maquinas'}>Maquinas</NavLink>
+                <NavLink to={'/categoria/todo'}>Todo</NavLink>
+                <NavLink to={'/categoria/mancuernas'}>Mancuernas</NavLink>
+                <NavLink to={'/categoria/maquinas'}>Maquinas</NavLink>
             </nav>
 
             <Link to='/cart'>

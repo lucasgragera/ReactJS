@@ -1,45 +1,97 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './ItemListContainer.css'
 import React, { useEffect, useState } from "react";
 import { getGym } from '../lib/gym.requests';
-import Filter from './Filter/Filter'
+import Filter from '../Filter/Filter'
 
 const ItemListContainer = () => {
 
   const [products, setProducts] = useState([]); //Importante iniciar en array para que no falle el metodo map
   const [isLoading, setIsLoading] = useState(true);
+  const { category } = useParams()
   //Poner en efectos peticiones o cosas asincronas
+
   useEffect(() => {
+    if(!category) {
+      getGym()
+      .then( res => {
+        setProducts(res)
+      })
+      .catch( error => console.log(error))
+      .finally(() => setIsLoading(false))
+    }else{
+      getGym()
+      .then( res => {
+        setProducts(res.filter(products => products.category === category))
+      })
+      .catch( error => console.log(error))
+      .finally(() => setIsLoading(false))
+    }
+  }, [category])
 
-   getGym() //Se simula una peticion
-    .then(res => {
-      setIsLoading(false); //Cuando esta se resuelve cambia al estado para dejar de cargar
-      setProducts(res)} //Ademas setea productos con lo que resolvio la promesa (no hay catch porque estamos segurods de que siempre hay algo)
+  // useEffect(() => {
+
+  //  getGym() //Se simula una peticion
+  //   .then(res => {
+  //     setIsLoading(false); //Cuando esta se resuelve cambia al estado para dejar de cargar
+  //     setProducts(res)} //Ademas setea productos con lo que resolvio la promesa (no hay catch porque estamos segurods de que siempre hay algo)
       
-      ) 
+  //     ) 
 
-  }, []);
+  // }, []);
 
-  // const handleProductFiltered = ()
+  console.log(category);
+  const handleProductFiltered = ({filterState, handleFilterChange}) => (
+    <div>
+      <div>
+        <h2>buscar producto</h2>
+        <input type="text" value={filterState} onChange={handleFilterChange} />
+      </div>
+      <div>
+        {isLoading ?
+          <h2>Cargando</h2>
+          :
+          <>
+            {filterState === ''
+
+              ? <div className="item-list">
+                {products.map((product) => (
+                  <div key={product.id}>
+                    <h2>{product.title}</h2>
+                    <img className="texto" src={product.img} alt="" />
+                    <h3 className="texto" > {product.price}</h3>
+                    <h5 className="texto" >{product.category}</h5>
+                    <Link to={`/detail/${product.id}`}>
+                      <button>Comprar</button>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+              :
+              products.filter(product => product.title.toLowerCase().includes(filterState.toLowerCase()))
+                .map(product =>
+                  <div key={product.id}>
+                    <h2>{product.title}</h2>
+                    <img className="texto" src={product.img} alt="" />
+                    <h3 className="texto" > {product.price}</h3>
+                    <h5 className="texto" >{product.category}</h5>
+                    <Link to={`/detail/${product.id}`}>
+                      <button>Comprar</button>
+                    </Link>
+                  </div>)
+            }
+          </>
+        }
+      </div>
+    </div>
+
+    
+  )
   return (
     <div>
-      {isLoading ?
-        <h2>Cargdando</h2>
-        :
-        <div className="item-list">
-          {products.map((product) => (
-            <div key={product.id}>
-              <h2>{product.title}</h2>
-              <img className="texto" src={product.img} alt="" />
-              <h3 className="texto" > {product.price}</h3>
-              <h5 className="texto" >{product.category}</h5>
-              <Link to={`/detail/${product.id}`}>
-                <button>Comprar</button>
-              </Link>
-            </div>
-          ))}
-        </div>
-      }
+      <Filter>
+          {handleProductFiltered}
+      </Filter>
     </div>
   )
 }

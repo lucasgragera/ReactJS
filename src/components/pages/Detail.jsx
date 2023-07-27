@@ -1,9 +1,11 @@
 import React from 'react'
 
-const Detail = () => {
+const Detail = ({producto}) => {
   return (
     <div>
-      <h2>detail</h2>
+      <img src={producto.img} alt="" />
+      <h2>{producto.title}</h2>
+      <h5>{producto.description}</h5>
     </div>
   )
 }

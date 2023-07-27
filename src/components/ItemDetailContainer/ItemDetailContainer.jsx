@@ -25,7 +25,7 @@ const ItemDetailContainer = () => {
       {isLoading ?
         <h2 className='charging2'>cargando...</h2>
       :
-        <Detail product={producto} />
+        <Detail producto={producto} />
       }
     </div>
   )
