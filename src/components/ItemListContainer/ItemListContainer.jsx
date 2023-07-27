@@ -32,8 +32,8 @@ const ItemListContainer = () => {
   const handleProductFiltered = ({filterState, handleFilterChange}) => (
     <div>
       <div>
-        <h2>buscar producto</h2>
-        <input type="text" value={filterState} onChange={handleFilterChange} />
+        <h3 className='form'>BUSCAR PRODUCTO</h3>
+        <input  type="text" value={filterState} onChange={handleFilterChange} />
       </div>
       <div>
         {isLoading ?
@@ -50,7 +50,7 @@ const ItemListContainer = () => {
                     <h3 className="texto" > {product.price}</h3>
                     <h5 className="texto" >{product.category}</h5>
                     <Link to={`/detail/${product.id}`}>
-                      <button>Comprar</button>
+                      <button className='boton' >Comprar</button>
                     </Link>
                   </div>
                 ))}
@@ -64,7 +64,7 @@ const ItemListContainer = () => {
                     <h3 className="texto" > {product.price}</h3>
                     <h5 className="texto" >{product.category}</h5>
                     <Link to={`/detail/${product.id}`}>
-                      <button>Comprar</button>
+                      <button className='boton' >Comprar</button>
                     </Link>
                   </div>)
             }

@@ -12,3 +12,11 @@ h2{
     display: grid;
     justify-content: center;
 }
+.form{
+    display: flex;
+    justify-content: flex-start;
+}
+.boton{
+    display: flex;
+    align-content: center;
+}

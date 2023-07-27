@@ -1,11 +1,12 @@
 import React from 'react'
+import './Detail.css/'
 
 const Detail = ({producto}) => {
   return (
     <div>
-      <img src={producto.img} alt="" />
-      <h2>{producto.title}</h2>
-      <h5>{producto.description}</h5>
+      <img className='detalle' src={producto.img} alt="" />
+      <h2 className='detalle' >{producto.title}</h2>
+      <h5 className='detalle' >{producto.description}</h5>
     </div>
   )
 }

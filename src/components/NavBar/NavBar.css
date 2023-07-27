@@ -13,7 +13,8 @@
 .listado{
     display: flex;
     justify-content: center;
-    padding: 0;
+    
+    
 }
 .listado a{
     color: white;
