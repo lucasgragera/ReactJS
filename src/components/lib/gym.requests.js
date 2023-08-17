@@ -5,7 +5,8 @@ let productos = [
     category: "Mancuernas",
     price: 200,
     description:
-      "Lorem ipsum dolor sit amet consect",
+      "2 mancuernas de 15kg",
+    stock: 100,  
     img: "https://http2.mlstatic.com/D_NQ_NP_987043-MLA70513077888_072023-O.webp",
   },
   {
@@ -14,7 +15,8 @@ let productos = [
     category: "Mancuernas",
     price: 150,
     description:
-      "Lorem ipsum dolor sit amet consect",
+      "2 mancuernas de 10kg",
+    stock: 100, 
     img: "https://http2.mlstatic.com/D_NQ_NP_901968-MLA70510129348_072023-O.webp",
   },
   {
@@ -23,7 +25,8 @@ let productos = [
     category: "Maquinas",
     price: 2000,
     description:
-      "Lorem ipsum dolor sit amet consect",
+      "1 maquina multi fuerza",
+    stock: 100,   
     img: "https://http2.mlstatic.com/D_NQ_NP_864015-MLA54768416794_032023-O.webp"
   },
   {
@@ -32,7 +35,8 @@ let productos = [
     category: "Maquinas",
     price: 450,
     description:
-      "Lorem ipsum dolor sit amet consect",
+      "1 banco plano reclinable",
+    stock: 100,  
     img: "https://http2.mlstatic.com/D_NQ_NP_907478-MLA52993550561_122022-O.webp",
   },
   {
@@ -41,7 +45,8 @@ let productos = [
     category: "Maquinas",
     price: 450,
     description:
-      "Lorem ipsum dolor sit amet consect",
+      "1 camilla de isquios",
+    stock: 100,
     img: "https://http2.mlstatic.com/D_NQ_NP_613062-MLA54982937062_042023-O.webp",
   },
   {
@@ -50,7 +55,8 @@ let productos = [
     category: "Maquinas",
     price: 1000,
     description:
-      "Lorem ipsum dolor sit amet consect",
+      "1 polea multiuso",
+    stock: 100,  
     img: "https://http2.mlstatic.com/D_NQ_NP_708513-MLA32395205792_102019-O.webp",
   }
 ];

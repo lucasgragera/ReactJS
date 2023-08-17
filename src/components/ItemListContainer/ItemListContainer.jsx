@@ -1,43 +1,58 @@
 import { Link, useParams } from 'react-router-dom';
 import './ItemListContainer.css'
+import { collection, doc, getDoc, getDocs, getFirestore, query,  } from 'firebase/firestore'
 import React, { useEffect, useState } from "react";
 import { getGym } from '../lib/gym.requests';
 import Filter from '../Filter/Filter'
 
 const ItemListContainer = () => {
 
-  const [products, setProducts] = useState([]); //Importante iniciar en array para que no falle el metodo map
+  useEffect(() => {
+    const dbFirestore = getFirestore()
+    const queryCollection = collection(dbFirestore, 'productos')
+
+    // const queryCollectionFiltered = query(queryCollection, where('category', '==', category))
+
+  //   getDocs(queryCollectionFiltered)
+  //     .then(res => setProductos(res.docs.map(producto => ({ id: producto.id, ...producto.data() }))))
+  //     .catch(error => console.log(error))
+  //     .finally(() => setIsLoading(false))
+  // 
+}, []
+  )
+
+  const [products, setProducts] = useState([]);
+  const [producto, setProductos] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { category } = useParams()
 
   useEffect(() => {
-    if(!category) {
-      getGym()
-      .then( res => {
-        setProducts(res)
-      })
-      .catch( error => console.log(error))
-      .finally(() => setIsLoading(false))
-    }else{
-      getGym()
-      .then( res => {
-        setProducts(res.filter(products => products.category === category))
-      })
-      .catch( error => console.log(error))
-      .finally(() => setIsLoading(false))
+    const dbFirestore = getFirestore()
+    const queryCollection = collection(dbFirestore, 'productos')
+
+    if (category) {
+      const queryCollectionFiltered = query(queryCollection, where('category', '==', category))
+      getDocs(queryCollectionFiltered)
+        .then(res => setProductos(res.docs.map(producto => ({ id: producto.id, ...producto.data() }))))
+        .catch(error => console.log(error))
+        .finally(() => setIsLoading(false))
+    } else {
+      getDocs(queryCollection)
+        .then(res => setProducts(res.docs.map(producto => ({ id: producto.id, ...producto.data() }))))
+        .catch(error => console.log(error))
+        .finally(() => setIsLoading(false))
     }
   }, [category])
 
-  console.log(category);
-  const handleProductFiltered = ({filterState, handleFilterChange}) => (
+  const handleProductFiltered = ({ filterState, handleFilterChange }) => (
     <div>
       <div>
         <h3 className='form'>BUSCAR PRODUCTO</h3>
-        <input  type="text" value={filterState} onChange={handleFilterChange} />
+        <input type="text" value={filterState} onChange={handleFilterChange} />
       </div>
       <div>
         {isLoading ?
-          <h2>Cargando</h2>
+            <h2>CARGANDO</h2>
           :
           <>
             {filterState === ''
@@ -72,15 +87,17 @@ const ItemListContainer = () => {
         }
       </div>
     </div>
-
-    
   )
+
+
   return (
+
     <div>
       <Filter>
-          {handleProductFiltered}
+        {handleProductFiltered}
       </Filter>
     </div>
+
   )
 }
 
