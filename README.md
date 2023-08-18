@@ -1,6 +1,6 @@
 # VentaGym - Tu Tienda de Productos para Gimnasio
 
-Bienvenido a GymShop, una aplicación de comercio electrónico construida con React donde puedes comprar una variedad de productos relacionados con el fitness y el gimnasio. Ya sea que estés buscando equipos de entrenamiento, suplementos o ropa deportiva, ¡aquí encontrarás lo que necesitas para mantenerte en forma!
+Bienvenido a VentaGym, una aplicación de comercio electrónico construida con React donde puedes comprar una variedad de productos relacionados con el fitness y el gimnasio. Ya sea que estés buscando equipos de entrenamiento, suplementos o ropa deportiva, ¡aquí encontrarás lo que necesitas para mantenerte en forma!
 
 ## Características
 
