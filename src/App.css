@@ -1,6 +1,11 @@
-body{
+body {
     background-color: grey;
 }
-img{
+
+img {
     border-radius: 20px;
+}
+
+body {
+    padding-bottom: 30vh;
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Detail from '../pages/Detail';
 import { useParams } from 'react-router-dom';
-import { getGym } from '../lib/gym.requests';
 import { getDoc, getFirestore, doc } from 'firebase/firestore';
 
 const ItemDetailContainer = () => {
@@ -12,10 +11,6 @@ const ItemDetailContainer = () => {
   useEffect(() => {
     const dbFirestore = getFirestore();
     const queryDoc = doc(dbFirestore, 'productos', pid);
-    // getGym(pid)
-        //   .then(resp => {
-        //     console.log(resp);
-        //     setProducto(resp);
     getDoc(queryDoc)
       .then((resp) => {
         setProducto({ id: resp.id, ...resp.data() });

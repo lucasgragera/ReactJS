@@ -3,7 +3,7 @@ import "./Item.css";
 
 const Item = memo(
   ({
-    img, 
+    img,
     category,
     title,
     price

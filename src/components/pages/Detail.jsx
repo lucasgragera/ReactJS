@@ -23,7 +23,7 @@ export const Detail = ({ producto }) => {
         <div className='textos'>
             <h4 className='nombredet'>{producto.title}</h4>
             <h5 className='preciodet'>${producto.price}</h5>
-            <h6 className='stockdet'>{producto.stock} Unidades</h6>
+            <h6 className='stockdet'>{producto.stock} Unidades Disponibles</h6>
         </div>
         {
             !isCant ?

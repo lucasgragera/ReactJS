@@ -1,25 +1,10 @@
 import { Link, useParams } from 'react-router-dom';
 import './ItemListContainer.css'
-import { collection, doc, getDoc, getDocs, getFirestore, query,  } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, getFirestore, query, where } from 'firebase/firestore'
 import React, { useEffect, useState } from "react";
-import { getGym } from '../lib/gym.requests';
 import Filter from '../Filter/Filter'
 
 const ItemListContainer = () => {
-
-  useEffect(() => {
-    const dbFirestore = getFirestore()
-    const queryCollection = collection(dbFirestore, 'productos')
-
-    // const queryCollectionFiltered = query(queryCollection, where('category', '==', category))
-
-  //   getDocs(queryCollectionFiltered)
-  //     .then(res => setProductos(res.docs.map(producto => ({ id: producto.id, ...producto.data() }))))
-  //     .catch(error => console.log(error))
-  //     .finally(() => setIsLoading(false))
-  // 
-}, []
-  )
 
   const [products, setProducts] = useState([]);
   const [producto, setProductos] = useState({});
@@ -30,29 +15,37 @@ const ItemListContainer = () => {
     const dbFirestore = getFirestore()
     const queryCollection = collection(dbFirestore, 'productos')
 
-    if (category) {
-      const queryCollectionFiltered = query(queryCollection, where('category', '==', category))
-      getDocs(queryCollectionFiltered)
-        .then(res => setProductos(res.docs.map(producto => ({ id: producto.id, ...producto.data() }))))
-        .catch(error => console.log(error))
+
+    if (!category) {
+      getDocs(queryCollection)
+        .then(res => setProducts(res.docs.map(prod => ({ id: prod.id, ...prod.data() }))))
+        .catch(err => console.log(err))
         .finally(() => setIsLoading(false))
     } else {
-      getDocs(queryCollection)
-        .then(res => setProducts(res.docs.map(producto => ({ id: producto.id, ...producto.data() }))))
-        .catch(error => console.log(error))
+      const queryCollectionFiltered = query(
+        queryCollection,
+        where('category', '==', category),
+
+      )
+
+      getDocs(queryCollectionFiltered)
+        .then(res => setProducts(res.docs.map(prod => ({ id: prod.id, ...prod.data() }))))
+        .catch(err => console.log(err))
         .finally(() => setIsLoading(false))
     }
   }, [category])
+
+
 
   const handleProductFiltered = ({ filterState, handleFilterChange }) => (
     <div>
       <div>
         <h3 className='form'>BUSCAR PRODUCTO</h3>
-        <input type="text" value={filterState} onChange={handleFilterChange} />
+        <input className='input' type="text" value={filterState} onChange={handleFilterChange} />
       </div>
       <div>
         {isLoading ?
-            <h2>CARGANDO</h2>
+          <h2>CARGANDO</h2>
           :
           <>
             {filterState === ''
@@ -60,13 +53,17 @@ const ItemListContainer = () => {
               ? <div className="item-list">
                 {products.map((product) => (
                   <div key={product.id}>
-                    <h2>{product.title}</h2>
-                    <img className="texto" src={product.img} alt="" />
-                    <h3 className="texto" > {product.price}</h3>
-                    <h5 className="texto" >{product.category}</h5>
-                    <Link to={`/detail/${product.id}`}>
-                      <button className='boton' >Comprar</button>
-                    </Link>
+                    <div className='prods'>
+                      <h2>{product.title}</h2>
+                      <img className="img" src={product.img} alt="" />
+                      <h3 className="texto" > ${product.price}</h3>
+                      <h5 className="texto" >{product.category}</h5>
+                      <div className='boton'>
+                        <Link to={`/detail/${product.id}`}>
+                          <button >Comprar</button>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

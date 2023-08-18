@@ -1,8 +1,8 @@
 import { useState } from "react";
 import './ItemCount.css';
 
-export const ItemCount = ({ stock=100, onAdd }) => {
-  //Estado para manejar el contador
+export const ItemCount = ({ stock = 100, onAdd }) => {
+  
   const [count, setCount] = useState(1);
 
   const handleSum = () => {
@@ -10,7 +10,7 @@ export const ItemCount = ({ stock=100, onAdd }) => {
   };
 
   const handleSub = () => {
-    //Retornaria el numero mas grande entre 1 y count - 1, quiere decir que si count - 1 es === 0 entonces retornaria 1 al ser 0 mas pequeño que uno
+
     setCount(Math.max(1, count - 1));
   };
 
